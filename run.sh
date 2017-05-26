@@ -30,8 +30,8 @@ export TAG=$SHA
 export REGISTRY=$REGISTRY
 export CI_TOKEN=$TOKEN
 
-docker-compose build
-if [ ! -z $REGISTRY ]; then docker-compose push; fi
+docker-compose -f docker-compose.ci.yml build
+if [ ! -z $REGISTRY ]; then docker-compose -f docker-compose.ci.yml push; fi
 if [ ! -z $TOKEN ]; then docker deploy --compose-file ./docker/swarm/docker-compose.yml stack; fi
 
 popd
